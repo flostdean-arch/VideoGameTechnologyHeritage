@@ -32,4 +32,4 @@ Epic Games(当時Epic MegaGames)が開発するゲームエンジンシリーズ
 
 ## 関連系統
 
-- id Techシリーズ(→ [`../idTech/`](../idTech/README.md)、作成後にリンク先を確認)
+- id Techシリーズ(→ [`../idTech/`](../idTech/README.md))
