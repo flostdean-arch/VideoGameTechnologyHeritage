@@ -20,13 +20,40 @@ Writing at the level of detail below makes an article far more valuable to futur
 
 ## 📂 Where to Put Things
 
-- `docs/hardware/` — Constraints and mechanisms of specific hardware
-- `docs/engines/` — Technical explanations of game engines/middleware
-- `docs/algorithms/` — Specific algorithms or hacks (code samples welcome)
-- `docs/history/` — Interview records, timelines, industry primary/secondary sources
-- `docs/translations/` — Translations of existing articles (must link to the original)
+- `GameEngine/<engine family>/<generation>/` — Technical explanations of game engines (see below)
+- `Hardware/` — Constraints and mechanisms of specific hardware
+- `Algorithm/` — Specific algorithms or hacks (code samples welcome)
+- `History/` — Interview records, timelines, industry primary/secondary sources
+- `Translations/` — Translations of existing articles (must link to the original)
 
 If you're unsure where something belongs, open an Issue and ask before writing.
+
+### `GameEngine/` Structure Rules
+
+Engines are organized in two levels: **family** (engine lineage) → **generation**.
+
+```
+GameEngine/
+  UnrealEngine/
+    README.md      ← Overview of the whole family, key evolution points between generations
+    UE1/
+      README.md    ← Overview (release year, notable titles, source/tool availability, etc.)
+      rendering.md ← Split into separate files by subtopic, e.g. rendering
+      gameplay.md
+    UE2/
+      README.md
+      ...
+  idTech/
+    README.md      ← Overview of the whole family
+    idTech1/
+    idTech2/
+    idTech3/
+    idTech4/
+```
+
+- The family-level `README.md` should only contain the overall overview and a "map of differences between generations" — put individual technical details in the generation folders instead
+- Each generation folder should follow the same structure: `README.md` (overview) + one file per subtopic
+- New engine families should follow this same two-level rule
 
 ## ✍️ Minimum Article Format
 
