@@ -14,6 +14,8 @@ Epic Games(当時Epic MegaGames)が開発するゲームエンジンシリーズ
 - [`UnrealEngine2/`](./UnrealEngine2/README.md) — Unreal Engine 2(2002年〜)
 - [`UnrealEngine3/`](./UnrealEngine3/README.md) — Unreal Engine 3(2006年〜、執筆準備中)
 
+**Unreal Engine 4以降について**: UE4/UE5は現行バージョンであり、Epic公式のドキュメント・コミュニティが十分に整備されているため、このリポジトリでは専用フォルダを設けず対象外とする。ただし「UE3→UE4への移行」自体(2014年、有償UDK/ソース非公開モデルから無料+ロイヤリティモデルへの転換、GitHubでの条件付きソース公開開始)は、Unreal系統の歴史における重要な転換点のため、下記の「進化の地図」に一行だけ記録する。
+
 このREADMEには、系統全体の概要と世代間の進化の要点だけを記録し、個別の技術詳細は書かないこと。
 
 ## 世代ごとの進化の地図(執筆中)
@@ -26,6 +28,7 @@ Epic Games(当時Epic MegaGames)が開発するゲームエンジンシリーズ
 | UE1 | 1998年〜 | Unreal, Unreal Tournament | (シリーズ初のため対象外) |
 | UE2 | 2002年〜 | Unreal Tournament 2003/2004, Unreal II | (執筆時に追記) |
 | UE3 | 2006年〜 | Gears of War, Unreal Tournament 3 等 | (執筆時に追記) |
+| UE4以降 | 2014年〜 | (現行につき本リポジトリの対象外) | 有償UDK/ソース非公開モデルから、無料+ロイヤリティモデル・GitHubでの条件付きソース公開へ転換。詳細な技術解説はEpic公式ドキュメントを参照 |
 
 ## このシリーズ全体を通じた注意点
 
