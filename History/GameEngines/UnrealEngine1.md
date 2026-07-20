@@ -1,30 +1,47 @@
-# Unreal Engine 1 の技術と遺産
+# Unreal Engine 1 (UE1)
+
+- 対象: Unreal Engine 1(初代Unreal Engine)
+- 年代: 1998年〜(『Unreal』にて初採用)
+- 難易度: 中級
+- 出典: (執筆時に追記。Wikipedia "Unreal Engine 1" "Unreal (1998 video game)"、Unreal Wikiを参考に確認済みの範囲のみ記載)
 
 ## 概要
 
-**Unreal Engine 1**（UE1）は、1998年にEpic Gamesが発表した革新的なゲームエンジンです。当時としては最先端の3Dグラフィックス技術を備え、ゲーム開発の歴史において重要な転機となりました。
+Unreal Engine 1(UE1)は、Epic Games(当時Epic MegaGames)が1998年発売のFPS『Unreal』のために開発した、シリーズ最初のゲームエンジン。開発はTim Sweeneyが中心となり、1995年頃から始まった。
 
-### 基本情報
-- **開発元**: Epic Games
-- **初版リリース**: 1998年
-- **主なプラットフォーム**: PC、PlayStation、Dreamcast
-- **開発言語**: C++（コアエンジン）、UnrealScript（スクリプト）
+その後Unreal Tournament(1999年)にも採用され、後継のUnreal Engine 2へと引き継がれた。
 
----
+## 現在の入手性・注意点
+
+**このセクションはこのプロジェクトの読者にとって特に重要なので、必ず維持してください。**
+
+- **ゲーム本体(Unreal Gold / Unreal Tournament)**: Epic Games公認でInternet Archive経由で無料配布されている(実行ファイル/ゲームアセットとしての配布)
+- **UnrealEd(レベルエディタ)・UnrealScript(スクリプト言語)**: 上記の無料配布版に同梱されており、MOD制作・マップ制作は現在も可能
+- **エンジンのC++コア部分のソースコード**: Epicから公式に公開されたことはなく、現在も非公開(License: Proprietary commercial software)。GitHub上に見られる「UE1ソース」を名乗るリポジトリは、非公式に流出したソースやリバースエンジニアリングをベースにしたものであり、Epic公式の配布物ではない点に注意
+
+→ 「バイナリが無料 = エンジンがオープンソース化された」ではない、という区別をこの記事内で明確にすること。
+
+## 基本情報
+
+- 開発元: Epic Games(当時Epic MegaGames)
+- 初版リリース: 1998年5月(『Unreal』)
+- 開発言語: C++(コアエンジン)、UnrealScript(スクリプト)
+- プラットフォーム展開の実際:
+  - 初代『Unreal』(1998)は**PC(Windows)版のみ発売**。PlayStation版・Dreamcast版は開発が進められたが、いずれも発売中止になっている
+  - PS2版・Dreamcast版が実際に発売されたのは、後発の『Unreal Tournament』(1999)から
+  - → 「UE1 = PC・PS・DCで発売された」という単純化は誤りなので、記述する際は「どのタイトルの、どの移植版か」を明記すること
 
 ## 主な技術的特徴
 
-### 1. **リアルタイム3Dレンダリング**
+### リアルタイム3Dレンダリング
 
-UE1は当時としては非常に高速な3Dレンダリングエンジンを実装していました。
+当時としては高速な3Dレンダリングを実装。Z-bufferによる深度処理、テクスチャマッピングなどを備える。
 
-- **Z-buffer技術**: 深度テストによる正確な奥行き処理
-- **ポリゴン最適化**: 低ポリゴン数での効率的な描画
-- **テクスチャマッピング**: 高品質なテクスチャ表現
+*(このセクションは検証中。ソフトウェアレンダラー/Glide/Direct3D対応の変遷など、具体的な技術詳細は要出典で拡充する)*
 
-### 2. **UnrealScript**
+### UnrealScript
 
-C++で書かれたコアエンジンの上に、**UnrealScript**という独自のスクリプト言語を実装しました。
+C++で書かれたコアエンジンの上に、独自のスクリプト言語UnrealScriptを実装している。
 
 ```unrealscript
 // UnrealScript の例
@@ -35,205 +52,63 @@ function BeginPlay()
     Log("Game Started!");
     SetTimer(1.0, true);
 }
+```
 
-function Timer()
+特徴: オブジェクト指向、コンパイル型(インタプリタではない)、ステートマシンによる状態管理をサポート。
+
+```unrealscript
+auto state Idle
 {
-    // 毎フレーム実行される処理
+    Begin:
+        GotoState('Moving');
+}
+
+state Moving
+{
+    // Move logic here
 }
 ```
 
-**特徴：**
-- オブジェクト指向プログラミング対応
-- コンパイル型（インタプリタではなく）
-- メモリ管理の自動化
-- ゲーム開発に特化した設計
+### ワールドエディタ(UnrealEd)
 
-### 3. **ワールドエディタ**
+CSG(Constructive Solid Geometry)ベースのブラシシステムによる、リアルタイムのレベル編集環境を提供した。
 
-リアルタイムで3Dワールドを構築・編集できるエディタを提供しました。
+### AIシステム
 
-- **WYSIWYG（What You See Is What You Get）**: エディタ上での表示がゲーム内の表示に近い
-- **ブラシシステム**: CSG（Constructive Solid Geometry）による直感的なレベルデザイン
-- **リアルタイムプレビュー**: 変更内容をすぐに確認
+敵AI(Skaarjなど)の行動制御にステートマシンベースのシステムを使用。
 
-### 4. **AI システム**
+*(注意: 「Behavior Tree」はBehavior Treeという技法自体がゲーム業界で普及したのが2000年代半ば以降であり、1998年のUE1が採用していたとは考えにくい。この用語は使わず、実際に確認できた設計〔ステートマシン〕のみ記載する)*
 
-敵AIの行動制御に対応した専用のシステム：
+### ネットワーク機能
 
-- **PathFinding**: ナビゲーションメッシュを使用した自動経路探索
-- **State Machine**: 状態遷移によるAI行動の管理
-- **Behavior Trees**: 複雑な行動パターンの定義
+Client-Serverアーキテクチャ、Replicationによる状態同期、RPCを備え、マルチプレイに対応。
 
-### 5. **ネットワーク機能**
+## 有名なゲーム(UE1採用が確認できるもの)
 
-マルチプレイ対応の基盤を備えていました。
+- **Unreal**(1998, Epic Games) — シリーズ最初のUE1タイトル
+- **Unreal Tournament**(1999, Epic Games / Digital Extremes) — マルチプレイFPSとして大きな成功を収めた
+- **Deus Ex**(2000, Ion Storm) — アクションRPG+ステルス、UE1の拡張性を示す例
+- **Rune**(2000, Human Head Studios)
 
-- **Client-Server アーキテクチャ**: サーバー中心の通信
-- **Replication**: 状態の自動同期
-- **RPC（Remote Procedure Call）**: 離れたマシンでの関数呼び出し
+**以下は要注意:**
+- 『Splinter Cell』(2002, Ubisoft Montreal)は**Unreal Engine 2**採用であり、UE1ではない(誤って混同されやすいので明記)
+- 『Aliens versus Predator 2』(2001, Monolith Productions)は**LithTechエンジン**採用であり、Unreal系ですらない
 
----
+## 技術的な遺産と影響(検証中)
 
-## 有名なゲーム
+- スクリプト言語とコアエンジンの分離という設計は、後年のUnity(C#)やUnreal Engine 4/5(Blueprint)にも通じる考え方として語られることが多い
+- CSGブラシによるレベルデザイン手法は、後のUnreal Engine 4でも一部踏襲されている
 
-### Unreal（1998）
-- 開発: Epic Games
-- **最初のUE1ゲーム**。1人称シューティング。
-- グラフィックスの品質で当時の業界を驚かせた。
+*(このセクションは一般論に寄りやすいので、具体的な出典・一次資料が見つかったものから優先的に肉付けすること)*
 
-### Unreal Tournament シリーズ（1999-）
-- **Unreal Tournament**（1999）
-- **Unreal Tournament 2003 / 2004**
-- マルチプレイFPSの標準を確立し、大きな成功を収めた。
+## 技術解説として今後拡充したいトピック
 
-### Deus Ex（2000）
-- 開発: Ion Storm
-- アクションRPG＋ステルス要素
-- **マルチプレイの実装**が注目された作品
-- UE1の拡張性を示す好例
+- [ ] レンダリング方式(ソフトウェアレンダラー / Glide / Direct3D対応の変遷)
+- [ ] BSP(Binary Space Partitioning)によるレベル構造
+- [ ] UnrealScriptの言語設計の詳細
+- [ ] Unreal Engine 2との違い(→ 上位の `GameEngine/UnrealEngine/README.md` にも要点を反映)
 
-### Splinter Cell（2002）
-- 開発: Ubisoft Montreal
-- ステルスアクション
-- **グラフィックスの高度な活用**
+## 関連プロジェクト・参考リンク
 
-### その他
-- Rune（アクション＆パズル）
-- Unreal Championship（Xbox）
-- Aliens versus Predator 2（AVP2）
-
----
-
-## 技術的な遺産と影響
-
-### 1. **ゲームエンジン設計の標準化**
-
-UE1は、現代のゲームエンジンの多くの設計思想を先駆けました：
-
-- **スクリプト言語とコアエンジンの分離**
-  - C++の高速性 + スクリプトの柔軟性を両立
-  - 後のUnity（C#）やUnreal Engine 4/5（Blueprint）に継承
-
-- **エディタの重要性**
-  - ゲーム制作にはビジュアルエディタが不可欠
-  - プログラマー以外の開発者も参加可能に
-
-### 2. **レベルデザイン手法**
-
-ブラシシステムは、その後のゲーム開発における**レベルデザイン手法**に大きな影響を与えました。
-
-- CSGベースの手法は、後にUnreal Engine 4でも採用
-- 直感的で視覚的な設計が業界標準に
-
-### 3. **AI と State Machine**
-
-UE1のAIシステムは、ゲーム開発におけるAI設計の教科書的存在です。
-
-- State Machine は、その後のゲーム開発で広く採用
-- Behavior Tree へと進化していく基礎を提供
-
-### 4. **ネットワークプログラミング**
-
-マルチプレイゲームの開発方法論を確立：
-
-- Client-Server モデルの実装例
-- Replication による状態同期の考え方
-- 後のMMORPGやオンラインゲーム開発に継承
-
----
-
-## 技術的な制限と工夫
-
-### メモリ制限への対応
-
-1990年代後半のハードウェアは、現在と比べて大きなメモリ制限がありました。
-
-- **メモリプール**: 事前にメモリを確保して再利用
-- **アセットストリーミング**: 必要に応じてデータをロード・アンロード
-- **ポリゴン削減**: LOD（Level of Detail）による動的な品質調整
-
-### ハードウェア間の互換性
-
-異なるプラットフォームでの実装：
-
-- **PC版**: DirectX / OpenGL 対応
-- **PlayStation版**: プラットフォーム固有の最適化
-- **Dreamcast版**: 限定的なメモリ内での実装
-
----
-
-## UnrealScript の学習価値
-
-UnrealScript は、**オブジェクト指向プログラミングを学ぶ上で優れた例**です。
-
-### 特徴的な言語機能
-
-1. **クラス継承**
-   ```unrealscript
-   class MyCharacter extends Pawn;
-   ```
-
-2. **イベント駆動設計**
-   ```unrealscript
-   event Tick(float DeltaTime) { }
-   event BeginPlay() { }
-   ```
-
-3. **状態管理**
-   ```unrealscript
-   auto state Idle {
-       Begin:
-           GotoState('Moving');
-   }
-   
-   state Moving {
-       // Move logic here
-   }
-   ```
-
----
-
-## 現代への示唆
-
-### 1. **モジュール性の重要性**
-
-UE1がスクリプト言語を分離したように、**エンジン設計においてはモジュール性が重要**です。
-
-- コアエンジンの変更がゲーム開発に影響を与えない
-- 異なるプラットフォームへの移植が容易
-
-### 2. **ビジュアルツールの価値**
-
-プログラマーだけでなく、アーティストやデザイナーが直接参加できる環境の重要性。
-
-- 後のUnreal Engine 4以降に強化されている
-- ノードベースのプログラミング（Blueprint）につながる
-
-### 3. **コミュニティ駆動の発展**
-
-UE1は、**MODコミュニティ**によって大きく発展しました。
-
-- ユーザーが簡単にゲームを拡張・改造できる設計
-- オープンな開発方針がエンジンの普及を加速
-
----
-
-## 参考資料
-
-- **公式ドキュメント**: Unreal Engine 1 Documentation
-- **UnrealScript リファレンス**: UE1 Scripting Guide
-- **関連書籍**: 
-  - Game Engine Architecture（Mike Acton）
-  - Real-Time 3D Graphics with WebGL 2（Gordon Anning）
-
----
-
-## 関連リンク
-
-- [Unreal Tournament Community](https://www.unrealtournament.com/)
-- [Epic Games 公式サイト](https://www.epicgames.com/)
-- [Unreal Engine 歴史](https://www.unrealengine.com/en-US/release-notes)
-
----
-
-**最終更新**: 2026年7月18日
+<!-- 例: 非公式復元プロジェクト、OldUnreal、fgsfdsfgs/UE1 等。
+     引用する場合は出典を明記し、著作権上のグレーゾーンには触れ方に注意すること。 -->
