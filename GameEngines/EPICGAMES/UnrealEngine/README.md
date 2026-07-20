@@ -27,7 +27,7 @@ Unreal Engineは、Epic Games（当時 Epic MegaGames）が開発するゲーム
 | Unreal Engine 4 | 2014 | Blueprint、PBR、GitHub公開 | ★★★★★ |
 | Unreal Engine 5 | 2022 | Nanite、Lumen、World Partition | ★★★★★ |
 
-※ 「現在の研究環境」は、本リポジトリ独自の指標です。
+※「現在の研究環境」は、本リポジトリ独自の指標です。
 
 ---
 
@@ -139,6 +139,6 @@ Nanite、Lumen、World Partitionなど、次世代ゲーム開発を支える技
 
 # 関連記事
 
-- History/GameEngineHistory.md
-- Algorithms/
-- Tools/
+- [HistoricalTechnology/GameEngineHistory](../../../HistoricalTechnology/GameEngineHistory/)
+- [EngineArchitecture](../../../EngineArchitecture/)
+- [Tools/Engines](../../../Tools/Engines/)
