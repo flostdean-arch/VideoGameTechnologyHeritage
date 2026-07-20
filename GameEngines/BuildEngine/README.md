@@ -1,45 +1,80 @@
 # Build Engine
 
-- 対象: Build Engine(Ken Silverman作)
-- 年代: 1993年〜(『Duke Nukem 3D』等で使用)
-- 難易度: 中級
-- 出典: (執筆時に追記)
-
-## この項目について
-
-Unreal EngineやidTechと異なり、Build Engineは明確な「世代」に分かれておらず、1つのエンジンが継続的に拡張されてきた経緯を持つため、このフォルダでは世代分割を行わない(必要になった場合のみ後から分割する)。
-
 ## 概要
 
-Ken Silvermanが1993年からApogee Software(3D Realms)との契約のもとで開発したFPSエンジン。『Duke Nukem 3D』(1996年)のほか、『Shadow Warrior』『Blood』『Redneck Rampage』等、当時12本以上の商用タイトルに採用された。
+Build Engineは、Ken Silvermanによって1995年頃に開発されたゲームエンジンです。
 
-id Tech系やUnreal Engineとは異なり真の3D空間ではなく、セクター(Sector)ベースの構造で高さの異なるフロアやマップの傾斜表現(擬似的なroom-over-room表現の追加含む)を実現していた点が技術的特徴。
+『Duke Nukem 3D』『Shadow Warrior』『Blood』『Redneck Rampage』など、多くのFPSで採用されました。
 
-## 現在の入手性・注意点(ライセンスのグレーゾーン)
+一見すると3Dゲームですが、内部的にはSector（セクター）を中心とした独特の2.5D構造を採用しており、当時としては非常に自由度の高いマップ表現を実現しました。
 
-**このセクションはこのプロジェクトの読者にとって特に重要なので、必ず維持してください。**
+---
 
-Build Engineは「オープンソース化された」と語られることが多いが、実際には2つの異なるライセンス状態が混在しているため注意が必要:
+# 本リポジトリでの扱い
 
-- **Duke Nukem 3D本体のソースコード**: 2003年、3D Realmsによって**GPLライセンス**で公開されている
-- **Build Engine自体のソースコード**: Ken Silvermanが独自に公開した`BUILDLIC.TXT`というライセンスのもとで配布されている。閲覧・改変は自由だが、**商用の派生物を作るには本人の許可が必要**という条件付きであり、GPLのようなOSI承認のオープンソースライセンスではない
+Build Engineには、Unreal Engineやid Techのような公式な世代区分は存在しません。
 
-→ 「id Tech系のような完全なGPL公開」と混同しないこと。技術解説の際は、どちらのライセンスの話をしているか(Duke3D側かBuild Engine側か)を明記すること。
+そのため、本リポジトリでは、Build Engineを一つのゲームエンジンとして扱い、技術ごとに解説します。
 
-- 現在も`EDuke32`(最も活発なメンテナンス版)、`JFBuild`、icculus.orgによる初期移植版など、Windows/Linuxで動く実装が複数存在し、実際に触りながら学べる環境が整っている
+---
 
-## 技術解説(執筆中)
+# 主な特徴
 
-<!-- 以下、サブトピックごとに rendering.md / gameplay.md 等に分割していく想定。
-     まずはここに箇条書きで書きたいトピックを列挙してから、育てていくと進めやすい。 -->
+- Sectorベースのマップ構造
+- Portalによる可視判定
+- Room over Room（疑似多層構造）
+- スプライト主体のオブジェクト
+- CONスクリプト
 
-- [ ] セクターベースのマップ構造(BSPを使わない設計)
-- [ ] room-over-room表現の実現方法(擬似的な多層フロア)
-- [ ] .CON言語によるゲームロジックのスクリプト化(Duke Nukem 3D向けにTodd Replogleが設計)
-- [ ] Polymost(OpenGL対応レンダリング拡張)による技術的進化
-- [ ] id Tech系・Unreal系との設計思想の違い
+---
 
-## 関連プロジェクト・参考リンク
+# 現在の研究環境
 
-<!-- 例: EDuke32、JFBuild、icculus.org/BUILD、Voxlap等。
-     引用する場合は出典を明記し、ライセンスのグレーゾーンには触れ方に注意すること。 -->
+★★★★★
+
+Build Engineのソースコードは公開されています。
+
+また、
+
+- EDuke32
+- Mapster32
+- NBlood
+- Raze
+
+などのプロジェクトにより、現在でも研究・MOD制作が可能です。
+
+---
+
+# 技術解説
+
+- Sector
+- Portal
+- Renderer
+- CON
+- Map Format
+- Room over Room
+
+---
+
+# 採用タイトル
+
+- Duke Nukem 3D
+- Shadow Warrior
+- Blood
+- Redneck Rampage
+- Witchaven
+- TekWar
+
+---
+
+# 後継・影響
+
+Build Engineは完全な3Dエンジンではありませんでしたが、
+
+- Sectorベース設計
+- 高速な可視判定
+- エディタ中心の開発
+
+などは後のゲームエンジンにも影響を与えました。
+
+また、EDuke32などの現代的な拡張によって、現在でも新作MODやゲームが制作されています。
