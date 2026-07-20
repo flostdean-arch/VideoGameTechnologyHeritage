@@ -1,40 +1,144 @@
 # Unreal Engine
 
-- 対象: Unreal Engineシリーズ(Epic Games)
-- 年代: 1998年〜
-- 出典: (執筆時に追記)
+## 概要
 
-## この系統について
+Unreal Engineは、Epic Games（当時 Epic MegaGames）が開発するゲームエンジンシリーズです。
 
-Epic Games(当時Epic MegaGames)が開発するゲームエンジンシリーズ。1998年の『Unreal』で初めて採用されて以来、世代を重ねるごとに大規模なリニューアルを経ている。
+1998年に発売された『Unreal』のために開発された初代Unreal Engineを起点とし、現在のUnreal Engine 5まで継続的に発展しています。
 
-このフォルダでは世代ごとに以下のように分けて記録する。個別の技術詳細は各世代フォルダを参照:
+本リポジトリでは、各世代の技術的特徴だけでなく、
 
-- [`UnrealEngine1/`](./UnrealEngine1/README.md) — Unreal Engine 1(1998年〜)
-- [`UnrealEngine2/`](./UnrealEngine2/README.md) — Unreal Engine 2(2002年〜)
-- [`UnrealEngine3/`](./UnrealEngine3/README.md) — Unreal Engine 3(2006年〜、執筆準備中)
+- なぜその技術が採用されたのか
+- 前世代から何が進化したのか
+- 後継世代へどのように受け継がれたのか
+- 現在でも研究・学習できる環境はあるのか
 
-**Unreal Engine 4以降について**: UE4/UE5は現行バージョンであり、Epic公式のドキュメント・コミュニティが十分に整備されているため、このリポジトリでは専用フォルダを設けず対象外とする。ただし「UE3→UE4への移行」自体(2014年、有償UDK/ソース非公開モデルから無料+ロイヤリティモデルへの転換、GitHubでの条件付きソース公開開始)は、Unreal系統の歴史における重要な転換点のため、下記の「進化の地図」に一行だけ記録する。
+という「技術の系譜」を重視して解説します。
 
-このREADMEには、系統全体の概要と世代間の進化の要点だけを記録し、個別の技術詳細は書かないこと。
+---
 
-## 世代ごとの進化の地図(執筆中)
+# Unreal Engineシリーズ
 
-<!-- 各世代の技術詳細を書き終えたら、ここに「前世代から何が変わったか」を1〜2行で要約していく。
-     詳しい話は各世代のREADME・サブトピックファイルに任せる。 -->
+| 世代 | 初公開 | 主な特徴 | 現在の研究環境 |
+|------|---------|---------|----------------|
+| Unreal Engine 1 | 1998 | UnrealScript、BSP、UnrealEd | ★★★★★ |
+| Unreal Engine 2 | 2002 | DirectX 8世代、Static Mesh、Karma Physics | ★★★★★ |
+| Unreal Engine 3 | 2006 | DirectX 9、マルチスレッド、Kismet | ★★★☆☆ |
+| Unreal Engine 4 | 2014 | Blueprint、PBR、GitHub公開 | ★★★★★ |
+| Unreal Engine 5 | 2022 | Nanite、Lumen、World Partition | ★★★★★ |
 
-| 世代 | 年代 | 主な採用タイトル | 前世代からの主な変化点 |
-|---|---|---|---|
-| UE1 | 1998年〜 | Unreal, Unreal Tournament | (シリーズ初のため対象外) |
-| UE2 | 2002年〜 | Unreal Tournament 2003/2004, Unreal II | (執筆時に追記) |
-| UE3 | 2006年〜 | Gears of War, Unreal Tournament 3 等 | (執筆時に追記) |
-| UE4以降 | 2014年〜 | (現行につき本リポジトリの対象外) | 有償UDK/ソース非公開モデルから、無料+ロイヤリティモデル・GitHubでの条件付きソース公開へ転換。詳細な技術解説はEpic公式ドキュメントを参照 |
+※ 「現在の研究環境」は、本リポジトリ独自の指標です。
 
-## このシリーズ全体を通じた注意点
+---
 
-- ゲーム本体(実行ファイル)が無料配布されている世代があっても、それは**エンジンのC++コアがオープンソース化されたこと**を意味しない。各世代のREADMEにある「現在の入手性・注意点」セクションを参照
-- UnrealEd・UnrealScriptというMOD制作ツールチェーンは、UnrealEngine1〜3を通じて地続きに強化されている。この「ツールチェーンの連続性」も系統として記録する価値がある
+# 技術の系譜
 
-## 関連系統
+```text
+Unreal Engine 1
+        │
+        ▼
+Unreal Engine 2
+        │
+        ▼
+Unreal Engine 3
+        │
+        ▼
+Unreal Engine 4
+        │
+        ▼
+Unreal Engine 5
+```
 
-- id Techシリーズ(→ [`../idTech/`](../idTech/README.md)、作成後にリンク先を確認)
+各世代では互換性だけではなく、設計思想も少しずつ変化しています。
+
+例えば、
+
+- UnrealScript → Blueprint
+- BSP主体 → Static Mesh主体 → Nanite
+- Fixed Function Pipeline → Programmable Shader → PBR
+- Kismet → Blueprint Visual Scripting
+
+など、多くの技術が継承・発展しています。
+
+---
+
+# 各世代
+
+## Unreal Engine 1
+
+シリーズ最初のゲームエンジン。
+
+1998年発売の『Unreal』のために開発されました。
+
+BSPを利用したレベル設計や、UnrealScriptによるゲームロジックなど、シリーズの基礎となる多くの技術がこの世代で確立されています。
+
+→ [Unreal Engine 1](./UnrealEngine1/README.md)
+
+---
+
+## Unreal Engine 2
+
+DirectX 8世代に対応し、大規模マップやStatic Meshなどを導入。
+
+後のUE3へ繋がる設計が数多く採用されました。
+
+→ [Unreal Engine 2](./UnrealEngine2/README.md)
+
+---
+
+## Unreal Engine 3
+
+DirectX 9世代を代表するゲームエンジン。
+
+マルチスレッド対応、Kismet、Lightmassなど、現代のゲームエンジンにも影響を与える技術を数多く採用しています。
+
+現在は公式配布が終了しており、本リポジトリでは保存状況や研究環境についても記録しています。
+
+→ [Unreal Engine 3](./UnrealEngine3/README.md)
+
+---
+
+## Unreal Engine 4
+
+Blueprintの導入により、プログラマー以外でもゲーム開発が容易になりました。
+
+GitHubでソースコードが公開され、インディーゲーム開発の普及にも大きく貢献しています。
+
+→ [Unreal Engine 4](./UnrealEngine4/README.md)
+
+---
+
+## Unreal Engine 5
+
+Nanite、Lumen、World Partitionなど、次世代ゲーム開発を支える技術を搭載。
+
+現在もEpic Gamesによって継続的に開発されています。
+
+→ [Unreal Engine 5](./UnrealEngine5/README.md)
+
+---
+
+# 本リポジトリの記事について
+
+各記事では、以下の観点を共通して扱います。
+
+- 概要
+- 開発背景
+- 基本情報
+- 現在の研究環境
+- 保存状況
+- 技術解説
+- 後継技術への影響
+- 採用タイトル
+- 関連資料
+- 出典
+
+単なる機能紹介ではなく、「なぜその技術が生まれたのか」「現在でもどのように研究できるのか」を重視しています。
+
+---
+
+# 関連記事
+
+- History/GameEngineHistory.md
+- Algorithms/
+- Tools/
